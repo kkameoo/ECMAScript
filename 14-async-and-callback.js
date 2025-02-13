@@ -15,7 +15,7 @@ function logicA() {
     }, 2000);
     console.log("end logicA");
 }
-// logicA();
+logicA();
 // 비동기 처리를 수행하되 흐름을 동기방식처럼 처리할 필요가 있다.
 // -> Promise
 
@@ -25,19 +25,19 @@ function logicPromise() {
     return new Promise(function (resolve, reject) {
         // resolve -> fulfill 상태로 이전시킬 때 사용하는 콜백
         // reject -> rejected 상태로 이전시킬 때 사용하는 콜백
-       console.log("begin logicPromise");
-       setTimeout(() => {
+        console.log("begin logicPromise");
+        setTimeout(() => {
             reject("REJECTED");
-       }, 3000); 
+        }, 3000);
     });
 }
 
 function testLogicPromise() {
     console.log("Test Logic Promise");
     logicPromise() // Promise
-    // .then : fulfill 상태로 이전할 때 호출
-        .then(value => { console.log("PROMISE resolve : ", value)}) 
-        .catch(reason => { console.error("PROMISE reject : ", reason)});
+        // .then : fulfill 상태로 이전할 때 호출
+        .then(value => { console.log("PROMISE resolve : ", value) })
+        .catch(reason => { console.error("PROMISE reject : ", reason) });
 }
 // testLogicPromise();
 
@@ -64,10 +64,10 @@ function fetchDate() {
 }
 async function processData() {
     console.log("데이터를 가져오는 중...");
-
     // await 키워드 : promise가 해결될 때까지 코드를 일시 중단시킴
     // promise가 해결되면 await는 promise의 결과를 반환
     const data = await fetchDate();
     console.log("가져온 데이터:", data);
+    return data;
 }
-processData();
+// processData().then(console.log).catch(console.log);
